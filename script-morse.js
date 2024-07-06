@@ -42,6 +42,8 @@ export const invalidCharacter = new Error(
 );
 export const emptyinput = new Error("Please input text");
 
+export const invalidMorse = new Error("please input valid morse code");
+
 const regex = /[^.-\s]/; //regex for morse code textbox
 const regexInverse = /[^A-Z0-9\s]/i; //regex for english textbox
 
@@ -72,6 +74,12 @@ export const transToEng = (input) => {
     return morse
       .split(" ")
       .map((value) => {
+        if (
+          Object.values(morseCode).includes(value) === false &&
+          /[^\s]/.test(value) === true
+        ) {
+          throw invalidMorse;
+        }
         return Object.keys(morseCode).find((key) => morseCode[key] === value); //using .find() instead of .filter() so it only returns the key with the exact value instead of multiple keys that may have similar values
       })
       .join(" ");
@@ -90,6 +98,13 @@ export const transToEng = (input) => {
       })
       .join(" ");
   };
+
+  if (input === undefined || input === "") {
+    throw emptyinput;
+  }
+  if (typeof input !== "string" || regex.test(input)) {
+    throw invalidCharacter;
+  }
 
   return joinWord(morseWord(convertToEnglish(input)));
 };

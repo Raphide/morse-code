@@ -37,8 +37,12 @@ const morseCode = {
   9: "----.",
 };
 
-const invalidCharacter = new Error("Please only use letters, numbers and spaces within a string");
+const invalidCharacter = new Error(
+  "Please only use letters, numbers and spaces within a string"
+);
 const emptyinput = new Error("Please input text");
+
+const invalidMorse = new Error("please input valid morse code");
 
 const regex = /[^.-\s]/; //regex for morse code textbox
 const regexInverse = /[^A-Z0-9\s]/i; //regex for english textbox
@@ -59,7 +63,7 @@ const convertToMorse = (engString) => {
       return morseCode[char] ? morseCode[char] : char; // if the character matches a key in the above Object, return the item in the object, else return the character how it is (currently only characters in object are A-Z)
     })
     .join(" ")
-    .replaceAll("   ", "  "); //join them all together with spaces inbetween each morse character
+    .replaceAll("   ", "  "); //join them all together with spaces inbetween each morse character and 3 spaces in between words
   // extra spaces necessary for translating back into english
 };
 
@@ -73,6 +77,19 @@ const transToEng = (input) => {
     return morse
       .split(" ")
       .map((value) => {
+        if (
+          Object.values(morseCode).includes(value) === false &&
+          /[^\s]/.test(value) === true
+        ) {
+          throw (
+            (invalidMorse,
+            appendElementWithText(
+              "h4",
+              "Please enter valid morse-code",
+              engResult
+            ))
+          );
+        }
         return Object.keys(morseCode).find((key) => morseCode[key] === value); //using .find() instead of .filter() so it only returns the key with the exact value instead of multiple keys that may have similar values
       })
       .join(" ");
@@ -91,6 +108,13 @@ const transToEng = (input) => {
       })
       .join(" ");
   };
+
+  if (input === undefined || input === "") {
+    throw emptyinput;
+  }
+  if (typeof input !== "string" || regex.test(input)) {
+    throw invalidCharacter;
+  }
 
   return joinWord(morseWord(convertToEnglish(input)));
 };
@@ -160,7 +184,7 @@ morseToEng.addEventListener("submit", (e) => {
   e.preventDefault();
   const transEng = transToEng(morseText.value);
   console.log(transEng);
-  if (transEng === "") {
+  if (transEng === undefined || transEng === "") {
     appendElementWithText("h4", "Please enter valid morse-code", engResult);
   } else {
     appendElementWithText("h3", transEng, engResult);
@@ -178,11 +202,18 @@ morseText.addEventListener("keyup", (e) => {
 //need to add error state for submitting invalid morse code. right now it returns nothing
 
 //need to add buttons to clear outputs
-// clearEng.addEventListener("click", () => {
-//   engResult.removeChild(engResult);
-// });
+clearEng.addEventListener("click", () => {
+  while (engResult.hasChildNodes()) {
+    engResult.removeChild(engResult.firstChild);
+  }
+});
 
+clearMorse.addEventListener("click", () => {
+  while (morseResult.hasChildNodes()) {
+    morseResult.removeChild(morseResult.firstChild);
+  }
+});
 
 // /[\.-]/g; //alternative textbox
 
-// 
+//
