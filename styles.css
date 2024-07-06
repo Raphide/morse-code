@@ -1,0 +1,27 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+textarea{
+    font-size: 2em;
+    border: 3px solid rgb(68, 68, 139);
+    border-radius: 15px;
+}
+
+h3 {
+    white-space: pre;
+}
+
+h4 {
+    color: red;
+}

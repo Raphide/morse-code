@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Morse Code Translator</title>
+    <script src="./morse.js" defer></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Morse Code Translator</h1>
+    <main class="card">
+      <h2>English</h2>
+      <form id="english-to-morse">
+        <textarea
+          rows="5"
+          cols="50"
+          id="english"
+          placeholder="Type English here. Only use letters, numbers and spaces"
+        ></textarea>
+        <br />
+        <button class="btn">Translate to Morse Code</button>
+      </form>
+      <section id="morse">
+        <p>Result:</p>
+      </section>
+      <button id="clearMorse">Clear</button>
+      <br />
+      <h2>Morse Code</h2>
+      <form id="morse-to-english">
+        <textarea
+          rows="5"
+          cols="50"
+          id="morseCode"
+          placeholder="Type Morse Code here"
+        ></textarea>
+        <br />
+        <button class="btn">Translate to English</button>
+      </form>
+      <section id="eng">
+        <p>Result:</p>
+      </section>
+      <button id="clearEng">Clear</button>
+    </main>
+  </body>
+</html>
