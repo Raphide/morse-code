@@ -1,27 +1,48 @@
-body{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.card{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-textarea{
-    font-size: 2em;
-    border: 3px solid rgb(68, 68, 139);
-    border-radius: 15px;
+textarea {
+  font-size: 2em;
+  border: 10px solid rgb(88, 88, 142);
+  border-radius: 15px;
+  background-color: rgb(88, 88, 142);
+  color: rgb(255, 246, 236);
 }
 
 h3 {
-    white-space: pre;
+  white-space: pre;
 }
 
 h4 {
-    color: red;
+  color: red;
+}
+
+button {
+  border: 10px solid rgb(57, 57, 169);
+  border-radius: 15px;
+  background-color: rgb(57, 57, 169);
+  color: rgb(255, 246, 236);
+}
+
+button:hover {
+  border: 10px solid rgb(96, 96, 185);
+  background-color: rgb(96, 96, 185);
+  scale: 102%;
+}
+
+button:active {
+  border: 10px solid rgb(43, 43, 138);
+  background-color: rgb(43, 43, 138);
+  scale: 97%;
 }
