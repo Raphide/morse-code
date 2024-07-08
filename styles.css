@@ -18,6 +18,10 @@ textarea {
   border-radius: 15px;
   background-color: rgb(88, 88, 142);
   color: rgb(255, 246, 236);
+  
+}
+::placeholder {
+    color: rgb(179, 169, 234);
 }
 
 h3 {
